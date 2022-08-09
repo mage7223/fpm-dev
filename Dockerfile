@@ -1,5 +1,5 @@
 # Set master image
-FROM php:7.4.18-fpm-buster
+FROM php:7.4.30-fpm-buster
 
 # Set working directory
 WORKDIR /var/www/html
@@ -15,7 +15,7 @@ RUN apt-get install -y --no-install-recommends vim nano git  gcc musl-dev make o
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions gd xdebug-2.8.1 pdo_mysql mysqli mcrypt mbstring xml openssl json phar zip dom session zlib
+    install-php-extensions gd xdebug-2.8.1 pdo_mysql mysqli mcrypt mbstring xml openssl json phar zip dom session zlib sodium
 
 # Add and Enable PHP-PDO Extenstions
 RUN docker-php-ext-install pdo pdo_mysql
